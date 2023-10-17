@@ -42,5 +42,31 @@ get_24hformat_hour('11 PM')            | 23                     | 12
 
 #region bailam
 def get_24hformat_hour(hour_str):
-  return 'todo'
+      """Converts a time string in AM/PM format to 24-hour format.
+
+      Args:
+        hour_str: A string representing a time in AM/PM format.
+
+      Returns:
+        A string representing the time in 24-hour format, or the original string
+        if it is not in AM/PM format.
+      """
+
+      # Check if the input string ends with "am" or "pm".
+      if hour_str.endswith('am') or hour_str.endswith('pm'):
+        # Extract the hour and AM/PM indicator from the input string.
+        hour = int(hour_str[:hour_str.find(':')])
+        am_pm = hour_str[-2:]
+
+        # Convert the hour to 24-hour format.
+        if am_pm == 'pm' and hour != 12:
+          hour += 12
+
+        # Return the converted hour.
+        return str(hour)
+      else:
+        # The input string is already in 24-hour format.
+        return hour_str
+
+
 #endregion bailam
